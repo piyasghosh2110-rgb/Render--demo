@@ -1,4 +1,3 @@
-
 from flask import Flask, request, render_template # type: ignore
 import pickle
 import numpy as np # type: ignore
@@ -34,4 +33,3 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
