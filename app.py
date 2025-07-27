@@ -25,10 +25,20 @@ def predict():
     features = [hco3, so4, mg, sr]
     final_features = [np.array(features)]
 
-    prediction = model.predict(final_features)
-    output = 'No breakthrough' if prediction[0] == 1 else 'Breakthrough happened'
+    prediction = model.predict(final_features)[0]
+
+    # Map prediction to human-readable message
+    if prediction == 0:
+        output = "Less breakthrough"
+    elif prediction == 1:
+        output = "More breakthrough"
+    elif prediction == 2:
+        output = "No breakthrough"
+    else:
+        output = f"Unexpected result: {prediction}"
 
     return render_template('index.html', prediction_text=f'Prediction: {output}')
+
 
 
 if __name__ == "__main__":
